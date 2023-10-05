@@ -1,0 +1,6 @@
+template(name="CustomTemplate" type="string" string="/var/log/ciscoasa/%msg%")
+
+if ($fromhost-ip != "") then {
+    action(type="mmnormalize" ruleBase="/etc/rsyslog.d/cisco_asa_rulebase")
+    action(type="omfile" dynaFile="CustomTemplate")
+}
