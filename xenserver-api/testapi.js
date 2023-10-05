@@ -1,6 +1,7 @@
 const index = require('./index');
 const imports = require('./importsForTests');
 const { getOtherConfig } = require('./vm');
+const api = require('./api');
 
 const testVMGetAllVmRefs = async (host) => {
   await index.login(host, 'root', '!Cargotec!');
@@ -87,6 +88,30 @@ const testGetVmRecord = async (host) => {
   console.log(vmRecord);
 };
 
+const testGetAllVMs = async (host) => {
+  await index.login(host, 'root', '!Cargotec!');
+  const vmRefs = await api.getAll(host, 'VM', []);
+  console.log(vmRefs)
+};
+
+const testGetAllHosts = async (host) => {
+  await index.login(host, 'root', '!Cargotec!');
+  const hostRefs = await api.getAll(host, 'host', []);
+  console.log(hostRefs)
+};
+
+const testGetAllRecordsVm = async (host) => {
+  await index.login(host, 'root', '!Cargotec!');
+  const records= await api.getAllRecords(host, 'VM', []);
+  console.log(records)
+};
+
+const testGetAllRecordsHost = async (host) => {
+  await index.login(host, 'root', '!Cargotec!');
+  const records = await api.getAllRecords(host, 'host', []);
+  console.log(records)
+};
+
 
 // testVMGetAllVmRefs('192.168.232.3');
 // testVMGetByNameLabel('192.168.232.3');
@@ -101,4 +126,7 @@ const testGetVmRecord = async (host) => {
 // testGetMetrics('192.168.232.3');
 // testGetPowerState('192.168.232.3');
 // testGetOtherConfig('192.168.232.3');
-testGetVmRecord('192.168.232.3');
+// testGetVmRecord('192.168.232.3');
+// testGetAllVMs('192.168.232.3');
+// testGetAllRecordsHost('192.168.232.3');
+testGetAllRecordsVm('192.168.232.3');
